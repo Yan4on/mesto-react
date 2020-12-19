@@ -9,6 +9,7 @@
     margin-right: 19px;
     border: none;
     outline: none;
+    display: none;
 }
 
 .grid-card__del:hover {

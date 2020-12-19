@@ -24,10 +24,10 @@ function App() {
 
   const [cards, setCards] = React.useState([]);
 
-  // Используем хук для получения инфы о пользователе и карточек
+  // Используем хук для получения информации о юзере и карточки
   React.useEffect(() => {
     Promise.all([
-      api.getUserInfoFromServer(), //получаем данные о пользователе
+      api.getUserInfoFromServer(), //получаем данные о юзере
       api.getInitialCards() // Получаем массив карточек
     ])
       .then((data) => {
@@ -72,9 +72,7 @@ function App() {
       .then((userData) => { setCurrentUser(userData) }) // устанавливаем новый стэйт: новые данные пользователя
       .catch((err) => { api.setErrorServer(err); })
       .finally(() => {
-        //popupEditProfile.loadEnd();     //Снимаем блок и меняем название кнопки на начальное
         closeAllPopups();
-        //editProfileValidation.resetForm(); // Очищаем поля при Создании
       });
   }
 
@@ -84,9 +82,7 @@ function App() {
       .then((userData) => { setCurrentUser(userData) }) // устанавливаем новый стэйт: новый аватар
       .catch((err) => { api.setErrorServer(err); })
       .finally(() => {
-        //popupEditProfile.loadEnd();     //Снимаем блок и меняем название кнопки на начальное
         closeAllPopups();
-        //editProfileValidation.resetForm(); // Очищаем поля при Создании
       });
   }
 
@@ -96,9 +92,7 @@ function App() {
       .then((newCard) => { setCards([newCard, ...cards]) }) // Обновляем массив с карточками, добавляем загруженную
       .catch((err) => { api.setErrorServer(err); })
       .finally(() => {
-        //popupEditProfile.loadEnd();     //Снимаем блок и меняем название кнопки на начальное
         closeAllPopups();
-        //editProfileValidation.resetForm(); // Очищаем поля при Создании
       });
   }
 
