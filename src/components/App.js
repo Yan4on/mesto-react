@@ -69,31 +69,35 @@ function App() {
   // Обработчик кнопки Сохранить в попапе редактирования профиля
   function handleUpdateUser(inputValues) {
     api.saveUserInfoToServer(inputValues)   // Сохраняем на сервере
-      .then((userData) => { setCurrentUser(userData) }) // устанавливаем новый стэйт: новые данные пользователя
-      .catch((err) => { api.setErrorServer(err); })
-      .finally(() => {
-        closeAllPopups();
-      });
+      .then((userData) => { 
+        closeAllPopups()
+        setCurrentUser(userData) 
+      }) // устанавливаем новый стэйт: новые данные пользователя
+      .catch((err) => { 
+        api.setErrorServer(err); 
+      })
   }
 
   // Обработчик кнопки Сохранить в попапе редактирования аватара
   function handleUpdateAvatar(avatar) {
     api.saveAvatarToServer(avatar)   // Сохраняем на сервере
-      .then((userData) => { setCurrentUser(userData) }) // устанавливаем новый стэйт: новый аватар
-      .catch((err) => { api.setErrorServer(err); })
-      .finally(() => {
-        closeAllPopups();
-      });
+      .then((userData) => { 
+        setCurrentUser(userData) 
+        closeAllPopups()
+      }) // устанавливаем новый стэйт: новый аватар
+      .catch((err) => { 
+        api.setErrorServer(err); 
+      })
   }
 
   // Обработчик кнопки Создать в попапе добавления карточки
   function handleAddPlace(newCard) {
     api.saveCardToServer(newCard)   // Сохраняем на сервере
-      .then((newCard) => { setCards([newCard, ...cards]) }) // Обновляем массив с карточками, добавляем загруженную
+      .then((newCard) => { 
+        setCards([newCard, ...cards]) 
+        closeAllPopups()
+      }) // Обновляем массив с карточками, добавляем загруженную
       .catch((err) => { api.setErrorServer(err); })
-      .finally(() => {
-        closeAllPopups();
-      });
   }
 
   // Обработчики открытия попапов
